@@ -5,19 +5,19 @@ type IconName = keyof typeof HeroIcons;
 export interface ButtonProps {
   additionalClasses?: string;
   type?: ButtonType;
-  size?: ButtonSize;
+  //size?: ButtonSize;
   onClick?: () => void;
-  variant: ButtonVariant;
-  fullWidth?: boolean;
+  //variant: ButtonVariant;
+  //fullWidth?: boolean;
   children?: ReactNode;
   disabled?: boolean;
   href?: string;
-  rounded?: boolean;
-  isActive?: boolean;
+  //rounded?: boolean;
+  //isActive?: boolean;
   icon?: IconName;
   iconPosition?: "start" | "end";
   isLoading?: boolean;
-  split?: boolean;
+  //split?: boolean;
 }
 
 export interface DropDownButtonProps extends ButtonProps {

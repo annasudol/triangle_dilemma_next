@@ -1,3 +1,4 @@
+'use client';
 import React, { FC } from 'react';
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
 

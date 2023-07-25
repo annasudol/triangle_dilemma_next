@@ -7,6 +7,7 @@ import Loading from '@/components/Loading';
 
 import InputLabel from '@/components/common/InputLabel';
 import useDragFile from '@/hooks/useDragFile';
+import Button from '../Button';
 
 type FileUploadProps = {
   id: string;
@@ -16,10 +17,8 @@ type FileUploadProps = {
   title?: string;
   description?: string;
   onChange: (file: File | null) => void;
-  isUploadingFile?: boolean;
   fileName?: string;
   viewOnly?: boolean;
-  error?: boolean;
 };
 
 const FileUpload: FC<FileUploadProps> = ({
@@ -30,10 +29,8 @@ const FileUpload: FC<FileUploadProps> = ({
   title = 'Upload file',
   description,
   onChange,
-  isUploadingFile,
   fileName,
   viewOnly = false,
-  error = false,
 }) => {
   const { containerProps, isDragging } = useDragFile(onChange);
 
@@ -53,29 +50,25 @@ const FileUpload: FC<FileUploadProps> = ({
       <InputLabel required={required} label={label} />
       <div {...containerProps} className="mt-1 sm:col-span-2 sm:mt-0">
         <div
-          className={clsx('dark:bg-gray-600 flex justify-center rounded-md border border-dashed p-5 h-38', {
-            'border-red-200': !isDragging && error,
-            'border-blue-gray-300': !isDragging && !error,
+          className={clsx('flex justify-center rounded-md border border-dashed p-5 h-38', {
+            'border-red-200': !isDragging,
+            'border-blue-gray-300': !isDragging,
             'border-button-primary': isDragging,
           })}
         >
           <div className="space-y-1 text-center h-25">
-            {isUploadingFile && <Loading additionalClasses="mt-7" />}
-
-            {!isUploadingFile && !fileName && (
+            {!fileName && (
               <>
-                <DocumentTextIcon className="mx-auto h-12 w-12 dark:text-white text-blue-gray-400 stroke-1" />
+                <DocumentTextIcon className="mx-auto h-12 w-12 text-whit stroke-1 text-white" />
                 <div className="flex justify-center items-center text-sm text-gray-600">
                   <label
                     htmlFor={id}
-                    className="relative  dark:text-white cursor-pointer rounded-md dark:bg-gray-600  bg-white font-medium text-indigo-600 focus-within:outline-none hover:text-indigo-500"
+                    className="relative text-white cursor-pointer rounded-md font-medium  focus-within:outline-none hover:text-indigo-500"
                   >
                     <Badge size="basic" colour="violet">
                       {title}
                     </Badge>
-                    <span className="text-label dark:text-white text-xs opacity-80 ml-1">
-                      or drag and drop it here.
-                    </span>
+                    <span className="text-label text-white text-xs opacity-80 ml-1">or drag and drop it here.</span>
                     <input
                       id={id}
                       name={id}
@@ -91,16 +84,14 @@ const FileUpload: FC<FileUploadProps> = ({
               </>
             )}
 
-            {!isUploadingFile && fileName && (
+            {fileName && (
               <div className="h-38 overflow-hidden rounded-md relative z-auto space-y-1">
-                <CheckIcon className={'h-12 w-12 text-green-600 mx-auto'} />
-                <label className="block text-xs text-gray-500 dark:text-white">{fileName} is uploaded.</label>
+                <CheckIcon className="h-12 w-12 text-green-600 mx-auto" />
+                <label className="block text-xs text-white">{fileName} is uploaded.</label>
                 {!viewOnly && (
-                  <button onClick={() => onChange(null)}>
-                    <Badge colour="red" additionalClasses="hover:opacity-80">
-                      Remove file
-                    </Badge>
-                  </button>
+                  <Button onClick={() => onChange(null)} icon="FolderMinusIcon">
+                    Remove file
+                  </Button>
                 )}
               </div>
             )}
