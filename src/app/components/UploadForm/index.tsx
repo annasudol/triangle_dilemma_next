@@ -1,7 +1,7 @@
 import FileUpload from '@/components/FileUpload';
 import useFileUpload from '@/hooks/useFileUpload';
 function UploadForm() {
-  const { upload, file, isUploading } = useFileUpload();
+  const { upload, file, isUploading, maxTotal } = useFileUpload();
   return (
     <div>
       <FileUpload
@@ -15,6 +15,7 @@ function UploadForm() {
         fileName={file?.name}
         isLoading={isUploading}
       />
+      <p>{maxTotal}</p>
     </div>
   );
 }

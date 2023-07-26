@@ -4,6 +4,7 @@ import calculateMaxPathNumbers from '@/utils/calculateMaxPathNumbers';
 const useFileUpload = () => {
   const [file, setFile] = useState<File | null>();
   const [isUploading, setIsUploading] = useState<boolean>(false);
+  const [maxTotal, setMaxTotal] = useState<number>();
 
   const handleUpload = async (file: File | null) => {
     setFile(file);
@@ -12,7 +13,7 @@ const useFileUpload = () => {
       return file
         .text()
         .then((res) => {
-          return calculateMaxPathNumbers(res);
+          setMaxTotal(calculateMaxPathNumbers(res));
         })
         .finally(() => {
           setIsUploading(false);
@@ -24,6 +25,7 @@ const useFileUpload = () => {
     upload: handleUpload,
     isUploading,
     file,
+    maxTotal,
   };
 };
 
