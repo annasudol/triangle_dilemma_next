@@ -1,4 +1,4 @@
-function parseToArr(input = '') {
+export function parseToArr(input = '') {
   return input
     .split(/\n/)
     .map((row) => row.trim())
@@ -26,11 +26,10 @@ function maxValuesForARow(row: number[]): number[] {
     }, []);
 }
 
-function calculateMaxPathNumbers(input: string) {
+export function calculateMaxPathNumbers(input: string) {
   return parseToArr(input)
     .reverse()
     .reduce((acc, curr) => maxValuesForARow(curr.map((val, i) => val + (acc[i] || 0))), [])
     .reduce((acc, curr) => acc + curr, 0);
 }
 
-export default calculateMaxPathNumbers;
