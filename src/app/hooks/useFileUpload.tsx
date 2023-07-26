@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 
 const useFileUpload = () => {
   const [file, setFile] = useState<File | null>();
@@ -10,7 +10,19 @@ const useFileUpload = () => {
       setIsUploading(true);
       return file
         .text()
-        .then((res) => console.log(res))
+        .then((res) => {
+          const parseData = (data: string) => {
+            data = data.trim();
+            const dataArr = data.split('\n');
+
+            return dataArr.map((el) => {
+              const row = el.split(' ').map((num) => parseInt(num, 10));
+              return row;
+            });
+          };
+
+          console.log(parseData(res), 'res');
+        })
         .finally(() => {
           setIsUploading(false);
         });
