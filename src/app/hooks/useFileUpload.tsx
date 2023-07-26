@@ -5,7 +5,7 @@ const useFileUpload = () => {
   const [file, setFile] = useState<File | null>();
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const [maxTotal, setMaxTotal] = useState<number>();
-  const [arr, setArr] = useState<number[][]>();
+  const [arrValues, setArrValues] = useState<number[][]>();
 
   const handleUpload = async (file: File | null) => {
     setFile(file);
@@ -14,8 +14,8 @@ const useFileUpload = () => {
       return file
         .text()
         .then((res) => {
-          setArr(parseToArr(res));
           setMaxTotal(calculateMaxPathNumbers(res));
+          setArrValues(parseToArr(res));
         })
         .finally(() => {
           setIsUploading(false);
@@ -28,7 +28,7 @@ const useFileUpload = () => {
     isUploading,
     file,
     maxTotal,
-    arr,
+    arrValues,
   };
 };
 

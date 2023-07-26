@@ -1,7 +1,8 @@
 import FileUpload from '@/components/FileUpload';
 import useFileUpload from '@/hooks/useFileUpload';
+import Triangle from '@/components/Triangle';
 function UploadForm() {
-  const { upload, file, isUploading, maxTotal, arr } = useFileUpload();
+  const { upload, file, isUploading, maxTotal, arrValues } = useFileUpload();
   return (
     <div>
       <FileUpload
@@ -15,7 +16,9 @@ function UploadForm() {
         fileName={file?.name}
         isLoading={isUploading}
       />
-      <p>{maxTotal}</p>
+      <p className="text-white text-center font-bold text-xl">Maximum Total:</p>
+      <p className="text-white text-center font-bold text-2xl">{maxTotal}</p>
+      {arrValues && <Triangle arrValues={arrValues} />}
     </div>
   );
 }
