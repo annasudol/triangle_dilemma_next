@@ -50,7 +50,7 @@ const FileUpload: FC<FileUploadProps> = ({
   return (
     <div className="max-w-sm mx-auto my-4">
       <InputLabel required={required} label={label} />
-      <div {...containerProps} className="">
+      <div {...containerProps}>
         <div
           className={clsx('rounded-md border border-dashed p-5 h-38', {
             'border-white': !isDragging,
@@ -62,6 +62,7 @@ const FileUpload: FC<FileUploadProps> = ({
             {!fileName && !isLoading && (
               <>
                 <DocumentTextIcon className="mx-auto my-2 h-12 w-12 text-whit stroke-1 text-white" />
+
                 <div className="text-sm text-gray-600">
                   <label
                     htmlFor={id}
@@ -85,8 +86,10 @@ const FileUpload: FC<FileUploadProps> = ({
             )}
 
             {fileName && !isLoading && (
-              <div className="h-38 overflow-hidden rounded-md relative z-auto space-y-1">
-                <CheckIcon className="h-12 w-12 text-green-600 mx-auto" />
+              <div className="h-38 overflow-hidden rounded-md relative flex flex-col justify-center items-center">
+                <div className="bg-white h-14 w-14 rounded-full bg-opacity-70 flex justify-center items-center">
+                  <CheckIcon className="h-10 w-10 text-green-600 mx-auto" />
+                </div>
                 <label className="block text-sm text-white py-2">{fileName} is uploaded.</label>
                 {!viewOnly && (
                   <Button onClick={() => onChange(null)} icon="FolderMinusIcon">
