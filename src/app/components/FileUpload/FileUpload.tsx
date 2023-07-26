@@ -2,7 +2,7 @@ import { ChangeEvent, FC } from 'react';
 import clsx from 'clsx';
 import { useCallback } from 'react';
 import { CheckIcon, DocumentTextIcon } from '@heroicons/react/24/outline';
-import Badge from '@/components/Badge';
+import Loading from '@/components/Loading';
 
 import InputLabel from '@/components/common/InputLabel';
 import useDragFile from '@/hooks/useDragFile';
@@ -11,11 +11,12 @@ import Button from '@/components/Button';
 type FileUploadProps = {
   id: string;
   label: string;
+  onChange: (file: File | null) => void;
+  isLoading?: boolean;
   required?: boolean;
   accept?: string;
   title?: string;
   description?: string;
-  onChange: (file: File | null) => void;
   fileName?: string;
   viewOnly?: boolean;
 };
@@ -30,6 +31,7 @@ const FileUpload: FC<FileUploadProps> = ({
   onChange,
   fileName,
   viewOnly = false,
+  isLoading = false,
 }) => {
   const { containerProps, isDragging } = useDragFile(onChange);
 
@@ -46,27 +48,26 @@ const FileUpload: FC<FileUploadProps> = ({
   );
 
   return (
-    <div className="grid gap-y-1">
+    <div className="max-w-sm mx-auto my-4">
       <InputLabel required={required} label={label} />
-      <div {...containerProps} className="mt-1 sm:col-span-2 sm:mt-0">
+      <div {...containerProps} className="">
         <div
-          className={clsx('flex justify-center rounded-md border border-dashed p-5 h-38', {
+          className={clsx('rounded-md border border-dashed p-5 h-38', {
             'border-white': !isDragging,
             'border-blue-200': isDragging,
           })}
         >
-          <div className="space-y-1 text-center h-25">
-            {!fileName && (
+          <div className="text-center h-25">
+            {isLoading && <Loading additionalClasses="mt-7" />}
+            {!fileName && !isLoading && (
               <>
                 <DocumentTextIcon className="mx-auto h-12 w-12 text-whit stroke-1 text-white" />
-                <div className="flex justify-center items-center text-sm text-gray-600">
+                <div className="text-sm text-gray-600">
                   <label
                     htmlFor={id}
                     className="relative text-white cursor-pointer rounded-md font-medium  focus-within:outline-none hover:text-indigo-500"
                   >
-                    <Badge size="basic" colour="violet">
-                      {title}
-                    </Badge>
+                    <p className="p-0.5 bg-white rounded-3xl text-blue-700">{title}</p>
                     <span className="text-label text-white text-xs opacity-80 ml-1">or drag and drop it here.</span>
                     <input
                       id={id}
@@ -83,10 +84,10 @@ const FileUpload: FC<FileUploadProps> = ({
               </>
             )}
 
-            {fileName && (
+            {fileName && !isLoading && (
               <div className="h-38 overflow-hidden rounded-md relative z-auto space-y-1">
                 <CheckIcon className="h-12 w-12 text-green-600 mx-auto" />
-                <label className="block text-xs text-white">{fileName} is uploaded.</label>
+                <label className="block text-sm text-white py-2">{fileName} is uploaded.</label>
                 {!viewOnly && (
                   <Button onClick={() => onChange(null)} icon="FolderMinusIcon">
                     Remove file

@@ -1,9 +1,7 @@
-import { ChangeEvent, useState } from 'react';
-import FileUpload from '../FileUpload';
-
+import FileUpload from '@/components/FileUpload';
+import useFileUpload from '@/hooks/useFileUpload';
 function UploadForm() {
-  const [file, setFile] = useState<File | null>();
-
+  const { upload, file, isUploading } = useFileUpload();
   return (
     <div>
       <FileUpload
@@ -11,10 +9,11 @@ function UploadForm() {
         title="Upload a text file"
         label="Upload .txt"
         required
-        accept="text/txt"
+        accept=".txt"
         description="Supported format is .txt"
-        onChange={(e) => setFile(e)}
+        onChange={(e) => e && upload(e)}
         fileName={file?.name}
+        isLoading={isUploading}
       />
     </div>
   );

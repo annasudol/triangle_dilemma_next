@@ -10,8 +10,6 @@ export default function Home() {
         <p className="text-white text-center">
           A web app that calculate the maximum total from top to bottom in a text file
         </p>
-      </div>
-      <div className="mb-2 sm:mb-4 mt-3">
         <UploadForm />
       </div>
     </main>
