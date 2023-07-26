@@ -11,7 +11,7 @@ function UploadForm() {
         required
         accept=".txt"
         description="Supported format is .txt"
-        onChange={(e) => e && upload(e)}
+        onChange={(e) => upload(e)}
         fileName={file?.name}
         isLoading={isUploading}
       />
