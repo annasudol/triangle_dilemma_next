@@ -1,46 +1,29 @@
 import { useCallback, useState } from 'react';
 
-const emptyFileData = {
-  fileUrl: '',
-  filePath: '',
-  fileName: '',
-};
-
-type TFileData = typeof emptyFileData;
-
-type TUseFileUpload = {
-  onUpload?: (fileData: TFileData) => void;
-};
-
-const useFileUpload = (props?: TUseFileUpload) => {
+const useFileUpload = () => {
   const [isUploading, setIsUploading] = useState<boolean>(false);
 
-  const [fileData, setFileData] = useState<{
-    fileUrl: string;
-    filePath: string;
-    fileName: string;
-  }>(emptyFileData);
+  const handleUpload = useCallback(async (file: File | null) => {
+    setIsUploading(true);
+    return await uploadFile(file)
+      .then((res) => {
+        const data: TFileData = {
+          fileUrl: res?.downloadUrl,
+          filePath: res?.path,
+          fileName: file.name,
+        };
 
-  const handleUpload = useCallback(
-    async (file: File | null) => {
-      setFileData(emptyFileData);
-
-      if (!file) {
-        props?.onUpload?.(emptyFileData);
-        return;
-      }
-
-      setIsUploading(true);
-    },
-    [props]
-  );
+        setFileData(data);
+        props?.onUpload?.(data);
+      })
+      .finally(() => {
+        setIsUploading(false);
+      });
+  }, []);
 
   return {
     upload: handleUpload,
     isUploading,
-    fileUrl: fileData.fileUrl,
-    filePath: fileData.filePath,
-    fileName: fileData.fileName,
   };
 };
 

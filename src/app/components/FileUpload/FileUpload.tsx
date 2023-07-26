@@ -3,11 +3,10 @@ import clsx from 'clsx';
 import { useCallback } from 'react';
 import { CheckIcon, DocumentTextIcon } from '@heroicons/react/24/outline';
 import Badge from '@/components/Badge';
-import Loading from '@/components/Loading';
 
 import InputLabel from '@/components/common/InputLabel';
 import useDragFile from '@/hooks/useDragFile';
-import Button from '../Button';
+import Button from '@/components/Button';
 
 type FileUploadProps = {
   id: string;
@@ -38,6 +37,7 @@ const FileUpload: FC<FileUploadProps> = ({
     (event: ChangeEvent<HTMLInputElement>) => {
       const fileList = event.currentTarget?.files;
       const file = fileList?.item(0);
+
       if (file) {
         onChange(file);
       }
@@ -51,9 +51,8 @@ const FileUpload: FC<FileUploadProps> = ({
       <div {...containerProps} className="mt-1 sm:col-span-2 sm:mt-0">
         <div
           className={clsx('flex justify-center rounded-md border border-dashed p-5 h-38', {
-            'border-red-200': !isDragging,
-            'border-blue-gray-300': !isDragging,
-            'border-button-primary': isDragging,
+            'border-white': !isDragging,
+            'border-blue-200': isDragging,
           })}
         >
           <div className="space-y-1 text-center h-25">
