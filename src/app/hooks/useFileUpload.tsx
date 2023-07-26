@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import calculateMaxPathNumbers from '@/utils/calculateMaxPathNumbers';
 const useFileUpload = () => {
   const [file, setFile] = useState<File | null>();
   const [isUploading, setIsUploading] = useState<boolean>(false);
@@ -11,17 +12,7 @@ const useFileUpload = () => {
       return file
         .text()
         .then((res) => {
-          const parseData = (data: string) => {
-            data = data.trim();
-            const dataArr = data.split('\n');
-
-            return dataArr.map((el) => {
-              const row = el.split(' ').map((num) => parseInt(num, 10));
-              return row;
-            });
-          };
-
-          console.log(parseData(res), 'res');
+          return calculateMaxPathNumbers(res);
         })
         .finally(() => {
           setIsUploading(false);
