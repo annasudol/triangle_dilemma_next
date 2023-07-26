@@ -61,14 +61,14 @@ const FileUpload: FC<FileUploadProps> = ({
             {isLoading && <Loading additionalClasses="mt-7" />}
             {!fileName && !isLoading && (
               <>
-                <DocumentTextIcon className="mx-auto h-12 w-12 text-whit stroke-1 text-white" />
+                <DocumentTextIcon className="mx-auto my-2 h-12 w-12 text-whit stroke-1 text-white" />
                 <div className="text-sm text-gray-600">
                   <label
                     htmlFor={id}
                     className="relative text-white cursor-pointer rounded-md font-medium  focus-within:outline-none hover:text-indigo-500"
                   >
-                    <p className="p-0.5 bg-white rounded-3xl text-blue-700">{title}</p>
-                    <span className="text-label text-white text-xs opacity-80 ml-1">or drag and drop it here.</span>
+                    <p className="p-0.5 bg-white rounded-3xl text-blue-700 w-40 mx-auto">{title}</p>
+                    <p className="text-label text-white text-sm my-2">or drag and drop it here.</p>
                     <input
                       id={id}
                       name={id}
@@ -80,7 +80,7 @@ const FileUpload: FC<FileUploadProps> = ({
                     />
                   </label>
                 </div>
-                {description && <p className="text-xs text-gray-500 dark:text-white">{description}</p>}
+                {description && <p className="text-xs text-gray-200">{description}</p>}
               </>
             )}
 
