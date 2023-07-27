@@ -15,7 +15,6 @@ type FileUploadProps = {
   title?: string;
   description?: string;
   fileName?: string;
-  viewOnly?: boolean;
 };
 
 export const FileUpload: FC<FileUploadProps> = ({
@@ -25,7 +24,6 @@ export const FileUpload: FC<FileUploadProps> = ({
   description,
   onChange,
   fileName,
-  viewOnly = false,
   isLoading = false,
 }) => {
   const { containerProps, isDragging } = useDragFile(onChange);
@@ -55,7 +53,6 @@ export const FileUpload: FC<FileUploadProps> = ({
             {!fileName && !isLoading && (
               <>
                 <DocumentTextIcon className="mx-auto my-2 h-12 w-12 stroke-1 text-white" />
-
                 <div className="text-sm text-gray-600">
                   <label
                     htmlFor={id}
@@ -85,7 +82,7 @@ export const FileUpload: FC<FileUploadProps> = ({
                   <CheckIcon className="mx-auto h-10 w-10 text-green-600" />
                 </div>
                 <span className="block py-2 text-sm text-white">{fileName} is uploaded.</span>
-                {!viewOnly && <Button onClick={() => onChange(null)}>Remove file</Button>}
+                <Button onClick={() => onChange(null)}>Remove file</Button>
               </div>
             )}
           </div>

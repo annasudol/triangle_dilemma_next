@@ -22,15 +22,16 @@ export const useFileUpload = () => {
         .text()
         .then((res) => {
           let sum = 0;
-          parseTriangleArr(res).forEach((row) =>
-            row.forEach((item) => {
-              if (item.isMax) {
-                sum += item.value;
-              }
-            }),
-          );
-          setMaxTotal(sum);
           setArrValues(parseTriangleArr(res));
+          arrValues &&
+            arrValues.forEach((row) =>
+              row.forEach((item) => {
+                if (item.isMax) {
+                  sum += item.value;
+                }
+              }),
+            );
+          setMaxTotal(sum);
         })
         .finally(() => {
           setIsUploading(false);

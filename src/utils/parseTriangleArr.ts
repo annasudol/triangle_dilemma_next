@@ -21,15 +21,15 @@ export function parseTriangleArr(input: string): TriangleType[][] {
   let currentIndex = 0;
   if (arr !== undefined) {
     for (let i = 0; i < arr.length; i++) {
-      if (arr[i].length === 1) {
-        arr[i][0].isMax = true;
+      if ((arr as any)[i].length === 1) {
+        (arr as any)[i][0].isMax = true;
       } else {
-        const nextRowLeftItem = arr[i][currentIndex].value;
-        const nextRowRightItem = arr[i][currentIndex + 1].value;
+        const nextRowLeftItem = (arr as any)[i][currentIndex].value;
+        const nextRowRightItem = (arr as any)[i][currentIndex + 1].value;
         if (nextRowLeftItem > nextRowRightItem) {
-          arr[i][currentIndex].isMax = true;
+          (arr as any)[i][currentIndex].isMax = true;
         } else {
-          arr[i][currentIndex + 1].isMax = true;
+          (arr as any)[i][currentIndex + 1].isMax = true;
           currentIndex += 1;
         }
       }

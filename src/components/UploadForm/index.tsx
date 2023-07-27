@@ -10,6 +10,7 @@ export const UploadForm = () => {
   useEffect(() => {
     error.isError && toast(error.message);
   }, [error]);
+  console.log(arrValues, 'arrValues');
   return (
     <>
       <FileUpload

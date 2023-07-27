@@ -8,5 +8,4 @@ export interface ButtonProps {
   isLoading?: boolean;
 }
 
-
 export type ButtonType = 'link' | 'button' | 'submit';
