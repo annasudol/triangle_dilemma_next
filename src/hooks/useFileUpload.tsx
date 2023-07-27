@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 import { useState } from 'react';
 
 import type { TriangleType } from '@/types/triangle.types';
@@ -19,12 +18,15 @@ export const useFileUpload = () => {
         return fileDoc
           .text()
           .then((res) => {
-            let sum = 0;
+            let sum: undefined | number;
             setArrValues(parseTriangleArr(res));
             arrValues &&
-              arrValues.forEach((row) =>
+              arrValues.map((row) =>
                 row.forEach((item) => {
                   if (item.isMax) {
+                    if (!sum) {
+                      sum = 0;
+                    }
                     sum += item.value;
                   }
                 }),
