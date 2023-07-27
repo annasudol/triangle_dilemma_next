@@ -12,10 +12,10 @@ export const useFileUpload = () => {
   const [error, setError] = useState<{ message: string; isError: boolean }>({ message: '', isError: false });
 
   const handleUpload = async (fileDoc: File | null): Promise<void> => {
-    if (fileDoc?.type !== 'text/plain') {
+    if (fileDoc !== null && fileDoc?.type !== 'text/plain') {
       setError({ message: 'Only text file accepted', isError: true });
       setTimeout(() => setError({ isError: false, message: '' }), 3000);
-    } else {
+    } else if (fileDoc !== null) {
       setFile(fileDoc);
       setIsUploading(true);
       return fileDoc
