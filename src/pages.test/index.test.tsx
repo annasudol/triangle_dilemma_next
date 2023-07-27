@@ -11,5 +11,10 @@ describe('Index page', () => {
       });
       expect(heading).toBeInTheDocument();
     });
+    it('should have input', () => {
+      render(<Index />);
+      const input = screen.getByTestId('text_file');
+      expect(input).toBeInTheDocument();
+    });
   });
 });

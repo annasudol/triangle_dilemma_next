@@ -65,6 +65,7 @@ export const FileUpload: FC<FileUploadProps> = ({
                     <p className="my-2 text-sm text-white">or drag and drop it here.</p>
                     <input
                       id={id}
+                      data-testid={id}
                       name={id}
                       type="file"
                       className="sr-only"

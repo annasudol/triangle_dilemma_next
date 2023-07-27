@@ -13,7 +13,7 @@ export const UploadForm = () => {
   return (
     <>
       <FileUpload
-        id="csv_file"
+        id="text_file"
         title="Upload a text file"
         accept="text/.txt"
         description="Supported format is .txt"
