@@ -9,14 +9,13 @@ export const UploadForm = () => {
   const { upload, file, isUploading, maxTotal, arrValues, error } = useFileUpload();
   useEffect(() => {
     error.isError && toast(error.message);
-  }, [error]);
-  console.log(arrValues, 'arrValues');
+  }, [error, error.isError, error.message]);
   return (
     <>
       <FileUpload
         id="text_file"
         title="Upload a text file"
-        accept="text/.txt"
+        accept=".txt"
         description="Supported format is .txt"
         onChange={(e) => upload(e)}
         fileName={file?.name}

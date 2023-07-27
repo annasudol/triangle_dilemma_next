@@ -12,30 +12,33 @@ export const useFileUpload = () => {
   const [error, setError] = useState<{ message: string; isError: boolean }>({ message: '', isError: false });
 
   const handleUpload = async (fileDoc: File | null): Promise<void> => {
-    if (fileDoc !== null && fileDoc?.type !== 'text/plain') {
-      setError({ message: 'Only text file accepted', isError: true });
-      setTimeout(() => setError({ isError: false, message: '' }), 3000);
-    } else if (fileDoc !== null) {
-      setFile(fileDoc);
-      setIsUploading(true);
-      return fileDoc
-        .text()
-        .then((res) => {
-          let sum = 0;
-          setArrValues(parseTriangleArr(res));
-          arrValues &&
-            arrValues.forEach((row) =>
-              row.forEach((item) => {
-                if (item.isMax) {
-                  sum += item.value;
-                }
-              }),
-            );
-          setMaxTotal(sum);
-        })
-        .finally(() => {
-          setIsUploading(false);
-        });
+    setFile(fileDoc);
+    if (fileDoc !== null) {
+      if (fileDoc?.type === 'text/plain') {
+        setIsUploading(true);
+        return fileDoc
+          .text()
+          .then((res) => {
+            let sum = 0;
+            setArrValues(parseTriangleArr(res));
+            arrValues &&
+              arrValues.forEach((row) =>
+                row.forEach((item) => {
+                  if (item.isMax) {
+                    sum += item.value;
+                  }
+                }),
+              );
+            setMaxTotal(sum);
+          })
+          .finally(() => {
+            setIsUploading(false);
+          });
+      } else {
+        setFile(null);
+        setError({ message: 'Only text file accepted', isError: true });
+        setTimeout(() => setError({ isError: false, message: '' }), 3000);
+      }
     }
   };
 

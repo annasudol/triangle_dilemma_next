@@ -11,7 +11,6 @@ describe('Triangle', () => {
       [{ value: 15 }, { value: 55, isMax: true }, { value: 10 }],
     ];
     const triangleComp = shallow(<Triangle arrValues={arrValues} />);
-    console.log(triangleComp.getElement, 'triangleComp.getElement');
     triangleComp.exists;
   });
 });
