@@ -22,6 +22,9 @@ module.exports = {
       animation: {
         'waving-hand': 'wave 2s linear infinite',
       },
+      scale: {
+        300: '3',
+      },
     },
   },
   plugins: [],
