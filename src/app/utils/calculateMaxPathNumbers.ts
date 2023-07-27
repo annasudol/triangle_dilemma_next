@@ -1,3 +1,5 @@
+import { Triangle } from "@/types/triangle.types";
+
 export function parseToArr(input = '') {
   return input
     .split(/\n/)
@@ -14,8 +16,8 @@ export function parseToArr(input = '') {
 }
 
 
-export function parseTriangleArr(input: string): { value: number, isMax?: boolean }[][] {
-  const arr: { value: number, isMax?: boolean }[][] = parseToArr(input)
+export function parseTriangleArr(input: string): Triangle[][] {
+  const arr: Triangle[][] = parseToArr(input)
   let currentIndex = 0;
   for (let i = 0; i < arr.length; i++) {
     if (arr[i].length === 1) {
@@ -32,6 +34,5 @@ export function parseTriangleArr(input: string): { value: number, isMax?: boolea
       }
     }
   }
-
   return arr;
 }

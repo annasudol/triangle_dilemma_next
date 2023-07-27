@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { parseTriangleArr } from '@/utils/calculateMaxPathNumbers';
 import { Triangle } from '@/types/triangle.types';
+
 const useFileUpload = () => {
   const [file, setFile] = useState<File | null>();
   const [isUploading, setIsUploading] = useState<boolean>(false);
@@ -18,9 +19,15 @@ const useFileUpload = () => {
             res.split(/\n/).map((val) => Number(val)),
             'res'
           );
-          // setMaxTotal(maxValTriangleArr(res));
-          // setArrValues(parseToArr(res));
-          // calculateSums(parseToArr(res).flat());
+          let sum = 0;
+          parseTriangleArr(res).forEach((row) =>
+            row.forEach((item) => {
+              if (item.isMax) {
+                sum += item.value;
+              }
+            })
+          );
+          setMaxTotal(sum);
           setArrValues(parseTriangleArr(res));
         })
         .finally(() => {
