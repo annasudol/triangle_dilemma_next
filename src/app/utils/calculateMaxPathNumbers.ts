@@ -7,29 +7,31 @@ export function parseToArr(input = '') {
       row
         .trim()
         .split(/\s/)
-        .map((val) => Number(val.trim()))
+        .map((val) => {
+          return { 'value': Number(val.trim()) }
+        })
     );
 }
 
-/**
- * @param {number[]} row - the array of numbers to evaluate
- * @returns {number[]} max value from each consecutive pair of numbers
- */
-function maxValuesForARow(row: number[]): number[] {
-  return row.length === 1
-    ? row
-    : row.reduce((acc: number[], val: number, i, values) => {
-      if (i < values.length - 1) {
-        acc.push(Math.max(val, values[i + 1]));
+
+export function parseTriangleArr(input: string): { value: number, isMax?: boolean }[][] {
+  const arr: { value: number, isMax?: boolean }[][] = parseToArr(input)
+  let currentIndex = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].length === 1) {
+      arr[i][0].isMax = true
+    } else {
+      const nextRowLeftItem = arr[i][currentIndex].value;
+      const nextRowRightItem = arr[i][currentIndex + 1].value;
+      if (nextRowLeftItem > nextRowRightItem) {
+        arr[i][currentIndex].isMax = true
+        currentIndex = currentIndex
+      } else {
+        arr[i][currentIndex + 1].isMax = true
+        currentIndex = currentIndex + 1
       }
-      return acc;
-    }, []);
-}
+    }
+  }
 
-export function calculateMaxPathNumbers(input: string) {
-  return parseToArr(input)
-    .reverse()
-    .reduce((acc, curr) => maxValuesForARow(curr.map((val, i) => val + (acc[i] || 0))), [])
-    .reduce((acc, curr) => acc + curr, 0);
+  return arr;
 }
-
