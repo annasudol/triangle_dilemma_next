@@ -3,44 +3,17 @@ import type { FC } from 'react';
 import { createElement, forwardRef } from 'react';
 
 import type { ButtonProps } from './Button.types';
-import useButtonVariant from './hooks/useButtonVariant';
 
-export const Button: FC<ButtonProps> = forwardRef<
-  HTMLAnchorElement | HTMLButtonElement,
-  ButtonProps
->(
-  (
-    {
-      additionalClasses,
-      type = 'button',
-      variant = 'primary',
-      children,
-      onClick,
-      disabled,
-      href,
-      isLoading = false,
-      ...props
-    },
-    ref,
-  ) => {
-    const buttonVariant = useButtonVariant(variant);
-
-    if (!buttonVariant) {
-      return null;
-    }
-
-    const optionalClasses = {
-      [buttonVariant]: variant,
-      'opacity-50 pointer-events-none': disabled || isLoading,
-    };
-
+export const Button: FC<ButtonProps> = forwardRef<HTMLAnchorElement | HTMLButtonElement, ButtonProps>(
+  ({ type = 'button', children, onClick, disabled, isLoading = false, ...props }, ref) => {
     const sharedProps = {
       ref,
       onClick,
       className: clsx(
-        'relative flex items-center justify-center rounded-md px-4 py-2 font-medium',
-        optionalClasses,
-        additionalClasses,
+        'relative flex items-center justify-center rounded-md px-4 py-2 font-medium text-blue-900 border-2 border-blue-900',
+        {
+          'opacity-50 pointer-events-none': disabled || isLoading,
+        },
       ),
     };
 
@@ -48,11 +21,6 @@ export const Button: FC<ButtonProps> = forwardRef<
       ...sharedProps,
       disabled: disabled || isLoading,
       type,
-    };
-
-    const anchorProps = {
-      ...sharedProps,
-      href,
     };
 
     const componentContent = (
@@ -64,14 +32,7 @@ export const Button: FC<ButtonProps> = forwardRef<
             fill="none"
             viewBox="0 0 24 24"
           >
-            <circle
-              className="opacity-25"
-              cx="12"
-              cy="12"
-              r="10"
-              stroke="currentColor"
-              strokeWidth="4"
-            />
+            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
             <path
               className="opacity-75"
               fill="currentColor"
@@ -83,13 +44,10 @@ export const Button: FC<ButtonProps> = forwardRef<
       </>
     );
 
-    const Component = href ? 'a' : 'button';
-    const componentProps = Component === 'button' ? buttonProps : anchorProps;
-
     return createElement(
-      Component,
+      'button',
       {
-        ...componentProps,
+        ...buttonProps,
         ...props,
       },
       componentContent,

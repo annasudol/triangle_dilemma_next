@@ -18,13 +18,9 @@ describe('Main template', () => {
 
     it('should have a link to support github', () => {
       render(<Main meta={null}>{null}</Main>);
-
       const copyrightSection = screen.getByText(/© Copyright/);
       const copyrightLink = within(copyrightSection).getByRole('link');
-      expect(copyrightLink).toHaveAttribute(
-        'href',
-        'https://github.com/annasudol',
-      );
+      expect(copyrightLink).toHaveAttribute('href', 'https://github.com/annasudol');
     });
   });
 });

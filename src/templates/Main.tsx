@@ -8,7 +8,7 @@ type IMainProps = {
 };
 
 const Main = (props: IMainProps) => (
-  <div className="w-full px-1">
+  <div className="w-full">
     {props.meta}
     <div>
       <header className="flex justify-center">
@@ -18,7 +18,6 @@ const Main = (props: IMainProps) => (
         </div>
       </header>
       <main className="text-white mb-40">{props.children}</main>
-
       <footer className="mt-8 bg-slate-950 bg-opacity-[50%] py-8 text-center text-sm text-white fixed bottom-0 left-0 right-0">
         © Copyright {new Date().getFullYear()} {AppConfig.title}. Made with{' '}
         <a href="https://github.com/annasudol">Anna Sudol</a>.
