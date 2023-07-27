@@ -13,7 +13,7 @@ const TRiangle: FC<TRiangleProps> = ({ arrValues }) => {
           {row.map((item, i) => (
             <div
               key={i}
-              className={clsx(' h-8 w-8 rounded-full flex justify-center items-center text-[0.74rem]', {
+              className={clsx('h-8 w-8 rounded-full flex justify-center items-center text-[0.74rem]', {
                 'bg-red-600 text-white': item.isMax,
                 'bg-white text-blue-950': !item.isMax,
               })}

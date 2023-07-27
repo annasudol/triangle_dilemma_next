@@ -17,7 +17,7 @@ function UploadForm() {
         isLoading={isUploading}
       />
       <p className="text-white text-center font-bold text-xl">Maximum Total:</p>
-      <p className="text-white text-center font-bold text-2xl">{maxTotal}</p>
+      <div className="text-white text-center font-bold text-2xl animate-waving-hand">{maxTotal}</div>
       {arrValues && <Triangle arrValues={arrValues} />}
     </>
   );
