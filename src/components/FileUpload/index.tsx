@@ -84,11 +84,7 @@ export const FileUpload: FC<FileUploadProps> = ({
                   <CheckIcon className="mx-auto h-10 w-10 text-green-600" />
                 </div>
                 <span className="block py-2 text-sm text-white">{fileName} is uploaded.</span>
-                {!viewOnly && (
-                  <Button onClick={() => onChange(null)} variant="outline">
-                    Remove file
-                  </Button>
-                )}
+                {!viewOnly && <Button onClick={() => onChange(null)}>Remove file</Button>}
               </div>
             )}
           </div>
