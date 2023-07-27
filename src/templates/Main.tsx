@@ -17,7 +17,7 @@ const Main = (props: IMainProps) => (
           <h2 className="text-center text-xl text-white">{AppConfig.description}</h2>
         </div>
       </header>
-      <main className="text-white">{props.children}</main>
+      <main className="text-white mb-40">{props.children}</main>
 
       <footer className="mt-8 bg-slate-950 bg-opacity-[50%] py-8 text-center text-sm text-white fixed bottom-0 left-0 right-0">
         © Copyright {new Date().getFullYear()} {AppConfig.title}. Made with{' '}
