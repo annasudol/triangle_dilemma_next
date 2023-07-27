@@ -20,18 +20,18 @@ export const useFileUpload = () => {
           .then((res) => {
             let sum: undefined | number;
             setArrValues(parseTriangleArr(res));
-            arrValues &&
-              arrValues.map((row) =>
-                row.forEach((item) => {
-                  if (item.isMax) {
-                    if (!sum) {
-                      sum = 0;
-                    }
-                    sum += item.value;
+            parseTriangleArr(res).map((row) =>
+              row.forEach((item) => {
+                if (item.isMax) {
+                  if (!sum) {
+                    sum = 0;
                   }
-                }),
-              );
+                  sum += item.value;
+                }
+              }),
+            );
             setMaxTotal(sum);
+            console.log(maxTotal, 'maxTotal');
           })
           .finally(() => {
             setIsUploading(false);
