@@ -91,7 +91,7 @@ const FileUpload: FC<FileUploadProps> = ({
                 </div>
                 <label className="block text-sm text-white py-2">{fileName} is uploaded.</label>
                 {!viewOnly && (
-                  <Button onClick={() => onChange(null)} icon="FolderMinusIcon">
+                  <Button onClick={() => onChange(null)} icon="FolderMinusIcon" variant="outline">
                     Remove file
                   </Button>
                 )}

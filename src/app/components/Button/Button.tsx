@@ -2,12 +2,14 @@ import { FC, forwardRef, createElement } from 'react';
 import clsx from 'clsx';
 import * as HeroIcons from '@heroicons/react/24/solid';
 import type { ButtonProps } from './Button.types';
+import useButtonVariant from './hooks/useButtonVariant';
 
 const Button: FC<ButtonProps> = forwardRef<HTMLAnchorElement | HTMLButtonElement, ButtonProps>(
   (
     {
       additionalClasses,
       type = 'button',
+      variant = 'primary',
       children,
       onClick,
       disabled,
@@ -19,7 +21,14 @@ const Button: FC<ButtonProps> = forwardRef<HTMLAnchorElement | HTMLButtonElement
     },
     ref
   ) => {
+    const buttonVariant = useButtonVariant(variant);
+
+    if (!buttonVariant) {
+      return null;
+    }
+
     const optionalClasses = {
+      [buttonVariant]: variant,
       'opacity-50 pointer-events-none': disabled || isLoading,
     };
 
@@ -38,7 +47,7 @@ const Button: FC<ButtonProps> = forwardRef<HTMLAnchorElement | HTMLButtonElement
       ref: ref,
       onClick: onClick,
       className: clsx(
-        'flex items-center relative justify-center font-medium text-white bg-blue-900 px-4 py-2 rounded-md',
+        'flex items-center relative justify-center font-medium px-4 py-2 rounded-md',
         optionalClasses,
         additionalClasses
       ),

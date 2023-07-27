@@ -1,7 +1,8 @@
-// import FileUpload from '@/components/FileUpload';
 'use client';
-import UploadForm from './components/UploadForm';
+import exampleTextFile from './Triangle';
 
+import Button from '@/components/Button';
+import UploadForm from '@/components/UploadForm';
 export default function Home() {
   return (
     <main className=" min-h-screen pb-12">
@@ -9,6 +10,9 @@ export default function Home() {
       <p className="text-white text-center">
         A web app that calculate the maximum total from top to bottom in a text file
       </p>
+      <Button href={exampleTextFile} variant="link">
+        Download .CSV
+      </Button>
       <UploadForm />
     </main>
   );

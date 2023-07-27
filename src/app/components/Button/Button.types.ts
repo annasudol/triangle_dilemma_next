@@ -5,19 +5,14 @@ type IconName = keyof typeof HeroIcons;
 export interface ButtonProps {
   additionalClasses?: string;
   type?: ButtonType;
-  //size?: ButtonSize;
   onClick?: () => void;
-  //variant: ButtonVariant;
-  //fullWidth?: boolean;
+  variant?: ButtonVariant;
   children?: ReactNode;
   disabled?: boolean;
   href?: string;
-  //rounded?: boolean;
-  //isActive?: boolean;
   icon?: IconName;
   iconPosition?: "start" | "end";
   isLoading?: boolean;
-  //split?: boolean;
 }
 
 export interface DropDownButtonProps extends ButtonProps {
@@ -36,24 +31,7 @@ export interface TransactionButtonProps extends ButtonProps {
 
 export type ButtonVariant =
   | "primary"
-  | "secondary"
-  | "tertiary"
+  | "outline"
   | "link"
-  | "error"
-  | "warning";
-export type ButtonType = "reset" | "button" | "submit";
-export type ButtonSize =
-  | "extra-small"
-  | "small"
-  | "medium"
-  | "large"
-  | "extra-large";
+export type ButtonType = "link" | "button" | "submit";
 
-export type ButtonVariantProps = {
-  default: string;
-  active: string;
-};
-
-export type ButtonVariantObject = {
-  [key: string]: ButtonVariantProps;
-};
