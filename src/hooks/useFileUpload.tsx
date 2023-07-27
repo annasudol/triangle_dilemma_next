@@ -9,10 +9,14 @@ export const useFileUpload = () => {
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const [maxTotal, setMaxTotal] = useState<number>();
   const [arrValues, setArrValues] = useState<TriangleType[][]>();
+  const [error, setError] = useState<{ message: string; isError: boolean }>({ message: '', isError: false });
 
   const handleUpload = async (fileDoc: File | null): Promise<void> => {
-    setFile(fileDoc);
-    if (fileDoc) {
+    if (fileDoc?.type !== 'text/plain') {
+      setError({ message: 'Only text file accepted', isError: true });
+      setTimeout(() => setError({ isError: false, message: '' }), 3000);
+    } else {
+      setFile(fileDoc);
       setIsUploading(true);
       return fileDoc
         .text()
@@ -40,5 +44,6 @@ export const useFileUpload = () => {
     file,
     maxTotal,
     arrValues,
+    error,
   };
 };

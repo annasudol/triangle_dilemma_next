@@ -61,12 +61,8 @@ export const FileUpload: FC<FileUploadProps> = ({
                     htmlFor={id}
                     className="relative cursor-pointer rounded-md font-medium text-white  focus-within:outline-none hover:text-indigo-500"
                   >
-                    <p className="mx-auto w-40 rounded-3xl bg-white p-0.5 text-blue-700">
-                      {title}
-                    </p>
-                    <p className="my-2 text-sm text-white">
-                      or drag and drop it here.
-                    </p>
+                    <p className="mx-auto w-40 rounded-3xl bg-white p-0.5 text-blue-700">{title}</p>
+                    <p className="my-2 text-sm text-white">or drag and drop it here.</p>
                     <input
                       id={id}
                       name={id}
@@ -78,9 +74,7 @@ export const FileUpload: FC<FileUploadProps> = ({
                     />
                   </label>
                 </div>
-                {description && (
-                  <p className="text-xs text-gray-200">{description}</p>
-                )}
+                {description && <p className="text-xs text-gray-200">{description}</p>}
               </>
             )}
 
@@ -89,9 +83,7 @@ export const FileUpload: FC<FileUploadProps> = ({
                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white bg-opacity-[70]">
                   <CheckIcon className="mx-auto h-10 w-10 text-green-600" />
                 </div>
-                <span className="block py-2 text-sm text-white">
-                  {fileName} is uploaded.
-                </span>
+                <span className="block py-2 text-sm text-white">{fileName} is uploaded.</span>
                 {!viewOnly && (
                   <Button onClick={() => onChange(null)} variant="outline">
                     Remove file

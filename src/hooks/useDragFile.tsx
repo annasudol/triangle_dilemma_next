@@ -22,10 +22,10 @@ const useDragFile = (onDrop: (file: File) => void) => {
       handleDragOver(event);
       const files = event.dataTransfer.files;
       if (files.length) {
-        onDrop(files[0]);
+        onDrop(files[0] as File);
       }
     },
-    [handleDragOver, onDrop]
+    [handleDragOver, onDrop],
   );
 
   return {
