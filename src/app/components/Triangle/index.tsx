@@ -7,7 +7,7 @@ interface TRiangleProps {
 const TRiangle: FC<TRiangleProps> = ({ arrValues }) => {
   console.log(arrValues.length, 'arrValues');
   return (
-    <div>
+    <>
       {arrValues.map((row, i) => (
         <div key={`${i}-{row[0]}`} className="flex justify-center">
           {row.map((item, i) => (
@@ -25,7 +25,7 @@ const TRiangle: FC<TRiangleProps> = ({ arrValues }) => {
           ))}
         </div>
       ))}
-    </div>
+    </>
   );
 };
 

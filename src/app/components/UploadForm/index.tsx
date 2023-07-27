@@ -16,8 +16,14 @@ function UploadForm() {
         fileName={file?.name}
         isLoading={isUploading}
       />
-      <p className="text-white text-center font-bold text-xl">Maximum Total:</p>
-      <div className="text-white text-center font-bold text-2xl animate-waving-hand">{maxTotal}</div>
+      {maxTotal && (
+        <div className="w-full flex flex-col items-center mb-4">
+          <p className="text-white text-center font-bold text-xl">Maximum Total:</p>
+          <div className="text-center font-bold text-2xl animate-waving-hand h-12 text-blue-950 bg-white bg-opacity-70 rounded-full px-3 py-2">
+            {maxTotal}
+          </div>
+        </div>
+      )}
       {arrValues && <Triangle arrValues={arrValues} />}
     </>
   );
