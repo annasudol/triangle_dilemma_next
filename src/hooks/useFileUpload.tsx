@@ -31,7 +31,6 @@ export const useFileUpload = () => {
               }),
             );
             setMaxTotal(sum);
-            console.log(maxTotal, 'maxTotal');
           })
           .finally(() => {
             setIsUploading(false);
