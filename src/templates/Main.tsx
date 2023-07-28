@@ -8,7 +8,7 @@ type IMainProps = {
 };
 
 const Main = (props: IMainProps) => (
-  <div className="w-full">
+  <div className="w-full px-4">
     {props.meta}
     <div>
       <header className="flex justify-center">
