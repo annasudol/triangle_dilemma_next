@@ -32,7 +32,7 @@ export const FileUpload: FC<FileUploadProps> = ({
     (event: ChangeEvent<HTMLInputElement>) => {
       const fileList = event.currentTarget?.files;
       const file = fileList?.item(0);
-      if (file) {
+      if (file || file === null) {
         onChange(file);
       }
     },
