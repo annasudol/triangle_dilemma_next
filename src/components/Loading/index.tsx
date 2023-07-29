@@ -3,12 +3,7 @@ import type { FC } from 'react';
 
 import type { LoadingProps } from './Loading.types';
 
-export const Loading: FC<LoadingProps> = ({
-  width = 100,
-  height = 100,
-  colorClasses,
-  additionalClasses,
-}) => {
+export const Loading: FC<LoadingProps> = ({ width = 100, height = 100, colorClasses, additionalClasses }) => {
   return (
     <div className={clsx(`pt-12 text-center`, additionalClasses)}>
       <div role="status">
@@ -35,5 +30,3 @@ export const Loading: FC<LoadingProps> = ({
     </div>
   );
 };
-
-export default Loading;
